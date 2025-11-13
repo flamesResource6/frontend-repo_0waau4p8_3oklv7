@@ -247,35 +247,73 @@ function WhyKiddyGo() {
   )
 }
 
-function Showcase() {
-  const items = [
-    { title: 'Parent app — Live tracking', img: '/parent-live.png' },
-    { title: 'Parent app — Alerts', img: '/parent-alerts.png' },
-    { title: 'School dashboard — Fleet map', img: '/school-map.png' },
-    { title: 'School dashboard — Reports', img: '/school-reports.png' },
+function Experience() {
+  const [tab, setTab] = React.useState('parents')
+  const tabs = [
+    { id: 'parents', label: 'Parents' },
+    { id: 'schools', label: 'Schools' },
   ]
+
+  const parentShots = [
+    { title: 'Live tracking & ETA', img: '/parent-live.png' },
+    { title: 'Pickup / drop alerts', img: '/parent-alerts.png' },
+  ]
+  const schoolShots = [
+    { title: 'Fleet map overview', img: '/school-map.png' },
+    { title: 'Routes & reports', img: '/school-reports.png' },
+  ]
+
+  const Shot = ({ it }) => (
+    <motion.div
+      whileHover={{ y: -6, boxShadow: '0 12px 30px rgba(2, 6, 23, 0.12)' }}
+      transition={{ duration: 0.25, ease }}
+      className="group rounded-2xl bg-white p-3 shadow-sm ring-1 ring-gray-100"
+    >
+      <div className="aspect-[4/5] w-full overflow-hidden rounded-xl bg-gradient-to-b from-gray-50 to-white">
+        <div className="flex h-full items-center justify-center text-gray-400">
+          {it.title}
+        </div>
+      </div>
+    </motion.div>
+  )
+
   return (
     <MotionSection className="mx-auto max-w-6xl px-6 py-12 sm:py-16">
       <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">See the experience</h2>
-        <p className="mt-3 text-gray-600">Clean interfaces for parents and schools. No driver app needed.</p>
+        <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Experience</h2>
+        <p className="mt-3 text-gray-600">Switch between parent and school views to see what each person gets.</p>
       </div>
-      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {items.map((it, i) => (
-          <motion.div
-            key={i}
-            whileHover={{ y: -6, boxShadow: '0 12px 30px rgba(2, 6, 23, 0.12)' }}
-            transition={{ duration: 0.25, ease }}
-            className="group rounded-2xl bg-white p-3 shadow-sm ring-1 ring-gray-100"
-          >
-            <div className="aspect-[4/5] w-full overflow-hidden rounded-xl bg-gradient-to-b from-gray-50 to-white">
-              <div className="flex h-full items-center justify-center text-gray-400">
-                {it.title}
-              </div>
-            </div>
-          </motion.div>
+
+      <div className="mt-8 flex justify-center gap-2">
+        {tabs.map(t => {
+          const active = tab === t.id
+          return (
+            <button
+              key={t.id}
+              onClick={() => setTab(t.id)}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ring-1 ${
+                active
+                  ? 'bg-blue-600 text-white ring-blue-600'
+                  : 'bg-white text-gray-700 hover:bg-blue-50 ring-gray-200'
+              }`}
+            >
+              {t.label}
+            </button>
+          )
+        })}
+      </div>
+
+      <motion.div
+        key={tab}
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, ease }}
+        className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+      >
+        {(tab === 'parents' ? parentShots : schoolShots).map((it, i) => (
+          <Shot key={i} it={it} />
         ))}
-      </div>
+      </motion.div>
     </MotionSection>
   )
 }
@@ -406,7 +444,7 @@ function FinalCTA() {
         <p className="mt-2 text-blue-100">Let’s get you set up. It takes minutes.</p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Button>Book a Demo</Button>
-          <Button variant="ghost">Contact</Button>
+          <Button variant="secondary">Contact</Button>
         </div>
       </div>
     </MotionSection>
@@ -425,6 +463,7 @@ export default function App() {
           <nav className="hidden gap-6 text-sm text-gray-600 sm:flex">
             <a href="#how" className="hover:text-gray-900 transition-colors">How it works</a>
             <a href="#features" className="hover:text-gray-900 transition-colors">Features</a>
+            <a href="#experience" className="hover:text-gray-900 transition-colors">Experience</a>
             <a href="#pricing" className="hover:text-gray-900 transition-colors">Pricing</a>
             <a href="#faq" className="hover:text-gray-900 transition-colors">FAQ</a>
           </nav>
@@ -440,7 +479,7 @@ export default function App() {
         <div id="how"><HowItWorks /></div>
         <div id="features"><FeatureGrid /></div>
         <WhyKiddyGo />
-        <Showcase />
+        <div id="experience"><Experience /></div>
         <Testimonials />
         <div id="pricing"><Pricing /></div>
         <div id="faq"><FAQ /></div>
