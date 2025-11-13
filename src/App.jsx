@@ -188,16 +188,18 @@ function FeatureGrid() {
     <section className="relative" aria-labelledby="features-title">
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-blue-50/50 to-white" />
       <MotionSection>
-        <div className="mx-auto max-w-7xl px-6 py-14 sm:py-20">
-          <div className="mx-auto max-w-2xl text-center">
+        {/* Full-bleed container on xl+ to reduce side whitespace */}
+        <div className="mx-auto w-full max-w-screen-2xl px-4 sm:px-6 py-14 sm:py-20">
+          <div className="mx-auto max-w-3xl text-center">
             <h2 id="features-title" className="text-3xl font-bold text-gray-900 sm:text-4xl">Feature highlights</h2>
             <p className="mt-3 text-gray-600">Thoughtfully designed for both families and administrators.</p>
           </div>
 
-          <div className="mt-12 grid gap-8 lg:grid-cols-2">
+          {/* 12-column layout to let both panels breathe on ultrawide screens */}
+          <div className="mt-10 grid grid-cols-1 gap-6 lg:mt-12 lg:grid-cols-12 lg:gap-6 xl:gap-8">
             {/* Parents panel */}
-            <div className="flex flex-col rounded-3xl bg-blue-50/60 p-6 shadow-sm ring-1 ring-blue-100 backdrop-blur-sm lg:p-8">
-              <div className="-mb-2 flex items-center gap-3">
+            <div className="lg:col-span-6 rounded-3xl bg-blue-50/70 p-6 shadow-sm ring-1 ring-blue-100 backdrop-blur-sm sm:p-8">
+              <div className="flex items-center gap-3">
                 <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-blue-100 ring-1 ring-blue-200">
                   <Icon name="phone" className="h-5 w-5 text-blue-700" />
                 </span>
@@ -211,7 +213,7 @@ function FeatureGrid() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-50px' }}
-                className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
+                className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
               >
                 {parents.map((p, i) => (
                   <Item key={i} it={p} />
@@ -219,12 +221,9 @@ function FeatureGrid() {
               </motion.div>
             </div>
 
-            {/* Divider for contrast on large screens */}
-            <div className="hidden lg:block" aria-hidden="true"></div>
-
             {/* Schools panel */}
-            <div className="flex flex-col rounded-3xl bg-indigo-50/60 p-6 shadow-sm ring-1 ring-indigo-100 backdrop-blur-sm lg:p-8">
-              <div className="-mb-2 flex items-center gap-3">
+            <div className="lg:col-span-6 rounded-3xl bg-indigo-50/70 p-6 shadow-sm ring-1 ring-indigo-100 backdrop-blur-sm sm:p-8">
+              <div className="flex items-center gap-3">
                 <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-100 ring-1 ring-indigo-200">
                   <Icon name="building" className="h-5 w-5 text-indigo-700" />
                 </span>
@@ -238,7 +237,7 @@ function FeatureGrid() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-50px' }}
-                className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
+                className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
               >
                 {schools.map((p, i) => (
                   <Item key={i} it={p} />
@@ -317,7 +316,7 @@ function Experience() {
   )
 
   return (
-    <MotionSection className="mx-auto max-w-7xl px-6 py-12 sm:py-16">
+    <MotionSection className="mx-auto max-w-screen-2xl px-4 sm:px-6 py-12 sm:py-16">
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Experience</h2>
         <p className="mt-3 text-gray-600">Switch between parent and school views to see what each person gets.</p>
@@ -370,8 +369,12 @@ function Testimonials() {
   ]
   const [a, b] = list
   return (
-    <MotionSection className="mx-auto max-w-4xl px-6 py-12 sm:py-16">
-      <div className="overflow-hidden rounded-3xl bg-white p-8 shadow-sm ring-1 ring-gray-100">
+    <MotionSection className="mx-auto max-w-5xl px-6 py-12 sm:py-16">
+      <div className="mx-auto max-w-2xl text-center">
+        <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Reviews</h2>
+        <p className="mt-3 text-gray-600">What parents and schools say about KiddyGo</p>
+      </div>
+      <div className="mt-8 overflow-hidden rounded-3xl bg-white p-8 shadow-sm ring-1 ring-gray-100">
         <motion.div
           initial={{ x: 0 }}
           whileHover={{ x: '-50%' }}
