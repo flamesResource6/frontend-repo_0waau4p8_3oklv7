@@ -15,10 +15,14 @@
   html {
     font-family: var(--font-sans);
     font-feature-settings: "rlig" 1, "calt" 1;
+    /* Remove default smooth scroll so we can control duration in JS */
+    scroll-behavior: auto;
+    overflow-x: hidden; /* prevent sideways shift from wide animations */
   }
 
   body {
     @apply antialiased;
+    overflow-x: hidden; /* double-safety for horizontal overflow */
   }
 }
 
