@@ -168,10 +168,11 @@ function FeatureGrid() {
     { title: 'Notifications log', icon: 'bell', desc: 'Trace who received what and when.' },
     { title: 'Vehicle & user management', icon: 'userCog', desc: 'Assign vans, students and admins.' },
   ]
+
   const Item = ({ it }) => (
     <motion.div
       variants={fadeSlideUp(0, 0.45, 16)}
-      className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-gray-100"
+      className="flex h-full flex-col justify-between rounded-xl bg-white/80 p-5 shadow-sm ring-1 ring-gray-100 backdrop-blur-sm"
     >
       <div className="flex items-center gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 ring-1 ring-blue-100">
@@ -179,45 +180,72 @@ function FeatureGrid() {
         </div>
         <h4 className="font-semibold text-gray-900">{it.title}</h4>
       </div>
-      <p className="mt-2 text-sm text-gray-600">{it.desc}</p>
+      <p className="mt-3 text-sm leading-6 text-gray-600">{it.desc}</p>
     </motion.div>
   )
 
   return (
-    <MotionSection>
-      <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16">
-        <div className="grid gap-10 lg:grid-cols-2">
-          <div>
-            <h3 className="text-2xl font-bold text-gray-900">For Parents</h3>
-            <motion.div
-              variants={staggerChildren(0.08, 0.1)}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
-              className="mt-6 grid gap-4 sm:grid-cols-2"
-            >
-              {parents.map((p, i) => (
-                <Item key={i} it={p} />
-              ))}
-            </motion.div>
+    <section className="relative">
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-blue-50/50 to-white" />
+      <MotionSection>
+        <div className="mx-auto max-w-7xl px-6 py-14 sm:py-20">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Feature highlights</h2>
+            <p className="mt-3 text-gray-600">Thoughtfully designed for both families and administrators.</p>
           </div>
-          <div>
-            <h3 className="text-2xl font-bold text-gray-900">For Schools</h3>
-            <motion.div
-              variants={staggerChildren(0.08, 0.1)}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
-              className="mt-6 grid gap-4 sm:grid-cols-2"
-            >
-              {schools.map((p, i) => (
-                <Item key={i} it={p} />
-              ))}
-            </motion.div>
+
+          <div className="mt-12 grid gap-8 lg:grid-cols-2">
+            {/* Parents panel */}
+            <div className="flex flex-col rounded-3xl bg-white/60 p-6 shadow-sm ring-1 ring-gray-100 backdrop-blur-sm lg:p-8">
+              <div className="sticky top-20 z-0 -mb-2 flex items-center gap-3">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-blue-50 ring-1 ring-blue-100">
+                  <Icon name="phone" className="h-5 w-5 text-blue-600" />
+                </span>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">For Parents</h3>
+                  <p className="text-sm text-gray-600">Live visibility and calm, clear updates.</p>
+                </div>
+              </div>
+              <motion.div
+                variants={staggerChildren(0.08, 0.1)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-50px' }}
+                className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
+              >
+                {parents.map((p, i) => (
+                  <Item key={i} it={p} />
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Schools panel */}
+            <div className="flex flex-col rounded-3xl bg-white/60 p-6 shadow-sm ring-1 ring-gray-100 backdrop-blur-sm lg:p-8">
+              <div className="sticky top-20 z-0 -mb-2 flex items-center gap-3">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-blue-50 ring-1 ring-blue-100">
+                  <Icon name="building" className="h-5 w-5 text-blue-600" />
+                </span>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">For Schools</h3>
+                  <p className="text-sm text-gray-600">Operational clarity and fewer calls.</p>
+                </div>
+              </div>
+              <motion.div
+                variants={staggerChildren(0.08, 0.1)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-50px' }}
+                className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
+              >
+                {schools.map((p, i) => (
+                  <Item key={i} it={p} />
+                ))}
+              </motion.div>
+            </div>
           </div>
         </div>
-      </div>
-    </MotionSection>
+      </MotionSection>
+    </section>
   )
 }
 
