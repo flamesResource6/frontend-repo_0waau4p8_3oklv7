@@ -14,7 +14,7 @@ function useSmoothScroll() {
     headerRef.current = document.querySelector('header')
   }, [])
 
-  const scrollToId = React.useCallback((id, duration = 1400) => {
+  const scrollToId = React.useCallback((id, duration = 1700) => {
     const el = document.getElementById(id)
     if (!el) return
     const headerH = headerRef.current ? headerRef.current.getBoundingClientRect().height : 0
@@ -120,7 +120,7 @@ function DemoModal({ open, onClose }) {
               <input className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="School name" />
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-700"># of vans</label>
+              <label className="text-sm font-medium text-gray-700"># of buses</label>
               <input type="number" min="1" className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="e.g. 6" />
             </div>
           </div>
@@ -258,12 +258,12 @@ function FeatureGrid() {
     { title: 'Safety assurances', icon: 'shield', desc: 'Built with privacy and safety in mind.' },
   ]
   const schools = [
-    { title: 'Fleet map', icon: 'map', desc: 'Overview of all vans on one map.' },
+    { title: 'Fleet map', icon: 'map', desc: 'Overview of all buses on one map.' },
     { title: 'Smart routes', icon: 'route', desc: 'Upload CSV or addresses. Optimize easily.' },
     { title: 'Trip history', icon: 'history', desc: 'See past trips with timings.' },
     { title: 'Reports', icon: 'reports', desc: 'Distance, speed and delays in one place.' },
     { title: 'Notifications log', icon: 'bell', desc: 'Trace who received what and when.' },
-    { title: 'Vehicle & user management', icon: 'userCog', desc: 'Assign vans, students and admins.' },
+    { title: 'Vehicle & user management', icon: 'userCog', desc: 'Assign buses, students and admins.' },
   ]
 
   const Item = ({ it }) => (
@@ -350,12 +350,12 @@ function FeatureGrid() {
 
 function WhyKiddyGo() {
   const points = [
-    'Works with any van',
-    "Built for India’s unorganized van ecosystem",
-    'Easy for non‑tech drivers',
-    'Cuts parent calls',
-    'Transparent for schools',
-    'No hardware needed for pilots',
+    'Works with any bus and route type',
+    'Built for India’s school‑bus reality',
+    'Simple for drivers — zero training needed',
+    'Fewer parent calls with accurate ETAs',
+    'Clear oversight for schools with logs',
+    'Start fast — no hardware needed for pilots',
   ]
   return (
     <MotionSection className="mx-auto max-w-6xl px-6 py-12 sm:py-16">
@@ -455,7 +455,7 @@ function Experience() {
 
 function Reviews() {
   const reviews = [
-    { quote: 'I can see the van and relax. Mornings are calmer now.', name: 'Priya', role: 'Parent' },
+    { quote: 'I can see the bus and relax. Mornings are calmer now.', name: 'Priya', role: 'Parent' },
     { quote: 'Fewer calls and more trust. Our staff saves time.', name: 'Rahul', role: 'School Admin' },
     { quote: 'Setup was quick. Parents love the alerts.', name: 'Meera', role: 'Principal' },
     { quote: 'Simple and reliable. Exactly what we needed.', name: 'Arun', role: 'Transport Head' },
@@ -500,9 +500,9 @@ function Reviews() {
 
 function Pricing() {
   const tiers = [
-    { name: 'Starter', price: '₹7,500/mo', points: ['Up to 3 vans', 'Email support', 'Parent app included'] },
-    { name: 'Growth', price: '₹19,000/mo', points: ['Up to 10 vans', 'Priority support', 'Parent app included'] },
-    { name: 'Scale', price: 'Let’s talk', points: ['11+ vans', 'Custom reports', 'Dedicated success'] },
+    { name: 'Starter', price: '₹7,500/mo', points: ['Up to 3 buses', 'Email support', 'Parent app included'] },
+    { name: 'Growth', price: '₹19,000/mo', points: ['Up to 10 buses', 'Priority support', 'Parent app included'] },
+    { name: 'Scale', price: 'Let’s talk', points: ['11+ buses', 'Custom reports', 'Dedicated success'] },
   ]
   return (
     <MotionSection className="relative z-0 mx-auto max-w-6xl px-6 py-12 sm:py-16">
@@ -606,10 +606,10 @@ export default function App() {
   const scrollToId = useSmoothScroll()
   const onNavClick = (e, id) => {
     e.preventDefault()
-    scrollToId(id, 1400)
+    scrollToId(id, 1700)
   }
 
-  const onScrollToHow = () => scrollToId('how', 1400)
+  const onScrollToHow = () => scrollToId('how', 1700)
 
   return (
     <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden">
