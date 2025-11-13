@@ -185,25 +185,25 @@ function FeatureGrid() {
   )
 
   return (
-    <section className="relative">
+    <section className="relative" aria-labelledby="features-title">
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-blue-50/50 to-white" />
       <MotionSection>
         <div className="mx-auto max-w-7xl px-6 py-14 sm:py-20">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Feature highlights</h2>
+            <h2 id="features-title" className="text-3xl font-bold text-gray-900 sm:text-4xl">Feature highlights</h2>
             <p className="mt-3 text-gray-600">Thoughtfully designed for both families and administrators.</p>
           </div>
 
           <div className="mt-12 grid gap-8 lg:grid-cols-2">
             {/* Parents panel */}
-            <div className="flex flex-col rounded-3xl bg-white/60 p-6 shadow-sm ring-1 ring-gray-100 backdrop-blur-sm lg:p-8">
-              <div className="sticky top-20 z-0 -mb-2 flex items-center gap-3">
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-blue-50 ring-1 ring-blue-100">
-                  <Icon name="phone" className="h-5 w-5 text-blue-600" />
+            <div className="flex flex-col rounded-3xl bg-blue-50/60 p-6 shadow-sm ring-1 ring-blue-100 backdrop-blur-sm lg:p-8">
+              <div className="-mb-2 flex items-center gap-3">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-blue-100 ring-1 ring-blue-200">
+                  <Icon name="phone" className="h-5 w-5 text-blue-700" />
                 </span>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900">For Parents</h3>
-                  <p className="text-sm text-gray-600">Live visibility and calm, clear updates.</p>
+                  <h3 className="text-xl font-bold text-blue-900">For Parents</h3>
+                  <p className="text-sm text-blue-900/70">Live visibility and calm, clear updates.</p>
                 </div>
               </div>
               <motion.div
@@ -219,15 +219,18 @@ function FeatureGrid() {
               </motion.div>
             </div>
 
+            {/* Divider for contrast on large screens */}
+            <div className="hidden lg:block" aria-hidden="true"></div>
+
             {/* Schools panel */}
-            <div className="flex flex-col rounded-3xl bg-white/60 p-6 shadow-sm ring-1 ring-gray-100 backdrop-blur-sm lg:p-8">
-              <div className="sticky top-20 z-0 -mb-2 flex items-center gap-3">
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-blue-50 ring-1 ring-blue-100">
-                  <Icon name="building" className="h-5 w-5 text-blue-600" />
+            <div className="flex flex-col rounded-3xl bg-indigo-50/60 p-6 shadow-sm ring-1 ring-indigo-100 backdrop-blur-sm lg:p-8">
+              <div className="-mb-2 flex items-center gap-3">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-100 ring-1 ring-indigo-200">
+                  <Icon name="building" className="h-5 w-5 text-indigo-700" />
                 </span>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900">For Schools</h3>
-                  <p className="text-sm text-gray-600">Operational clarity and fewer calls.</p>
+                  <h3 className="text-xl font-bold text-indigo-900">For Schools</h3>
+                  <p className="text-sm text-indigo-900/70">Operational clarity and fewer calls.</p>
                 </div>
               </div>
               <motion.div
@@ -285,10 +288,18 @@ function Experience() {
   const parentShots = [
     { title: 'Live tracking & ETA', img: '/parent-live.png' },
     { title: 'Pickup / drop alerts', img: '/parent-alerts.png' },
+    { title: 'Stop details', img: '/parent-stop.png' },
+    { title: 'Attendance view', img: '/parent-attendance.png' },
+    { title: 'Delay notifications', img: '/parent-delay.png' },
+    { title: 'Privacy controls', img: '/parent-privacy.png' },
   ]
   const schoolShots = [
     { title: 'Fleet map overview', img: '/school-map.png' },
     { title: 'Routes & reports', img: '/school-reports.png' },
+    { title: 'Trip history', img: '/school-history.png' },
+    { title: 'Route builder', img: '/school-builder.png' },
+    { title: 'User management', img: '/school-users.png' },
+    { title: 'Notifications log', img: '/school-log.png' },
   ]
 
   const Shot = ({ it }) => (
@@ -297,7 +308,7 @@ function Experience() {
       transition={{ duration: 0.25, ease }}
       className="group rounded-2xl bg-white p-3 shadow-sm ring-1 ring-gray-100"
     >
-      <div className="aspect-[4/5] w-full overflow-hidden rounded-xl bg-gradient-to-b from-gray-50 to-white">
+      <div className="aspect-[3/4] w-full overflow-hidden rounded-xl bg-gradient-to-b from-gray-50 to-white">
         <div className="flex h-full items-center justify-center text-gray-400">
           {it.title}
         </div>
@@ -306,8 +317,8 @@ function Experience() {
   )
 
   return (
-    <MotionSection className="mx-auto max-w-6xl px-6 py-12 sm:py-16">
-      <div className="mx-auto max-w-2xl text-center">
+    <MotionSection className="mx-auto max-w-7xl px-6 py-12 sm:py-16">
+      <div className="mx-auto max-w-3xl text-center">
         <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Experience</h2>
         <p className="mt-3 text-gray-600">Switch between parent and school views to see what each person gets.</p>
       </div>
@@ -336,7 +347,7 @@ function Experience() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45, ease }}
-        className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+        className="mt-10 grid gap-6 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"
       >
         {(tab === 'parents' ? parentShots : schoolShots).map((it, i) => (
           <Shot key={i} it={it} />
